@@ -88,11 +88,19 @@
         background-color: #fff;
         color: #000;
     }
+
+    body {
+        background-image: url('../popending/assets/img/mainbg.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
 </style>
 
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark">
         <a class="navbar-brand ps-3" href="index.php">Haier</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
@@ -133,11 +141,11 @@
     </nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <nav class="sb-sidenav accordion sb-sidenav" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" href="index.php">
+                        <a class="nav-link " href="index.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
                         </a>
@@ -512,7 +520,7 @@
                                                     onClick: (e, elements) => {
                                                         if (elements.length > 0) {
                                                             const index = elements[0].index;
-                                                            const selectedMats = labels[index]; 
+                                                            const selectedMats = labels[index];
                                                             window.location.href = `material_plant.php?mat_desc=${encodeURIComponent(selectedMats)}`;
                                                         }
                                                     }
@@ -525,11 +533,11 @@
                             </div>
                         </div>
                         <div class="mb-4" style="margin-right: 10px;">
-                            <div class="card-header py-3">
+                            <div class=" py-3">
                                 <i class="fas fa-chart-bar me-1"></i>Po Pending Group
                             </div>
                             <div class="card-body">
-                                <canvas id="chartContainer" width="auto" height="100"></canvas>
+                                <canvas id="chartContainer" width="auto" height="120"></canvas>
                                 <?php
                                 include 'connection.php';
 
@@ -579,7 +587,6 @@
                                     const pogroupMin = JSON.parse('<?php echo $pogroupMin_json; ?>');
                                     const revenuesMin = JSON.parse('<?php echo $revenuesMin_json; ?>');
 
-
                                     const barColorsMax = pogroupMax.map((_, index) => `hsl(${index * 360 / pogroupMax.length}, 70%, 60%)`);
                                     const barColorsMin = pogroupMin.map((_, index) => `hsl(${index * 360 / pogroupMin.length}, 70%, 60%)`);
 
@@ -612,6 +619,9 @@
                                                 legend: {
                                                     display: true,
                                                     position: 'top',
+                                                    labels: {
+                                                        color: "white" 
+                                                    },
                                                     onClick: function(e, legendItem, legend) {
                                                         const label = legendItem.text;
 
@@ -631,7 +641,15 @@
                                             },
                                             scales: {
                                                 y: {
-                                                    beginAtZero: true
+                                                    beginAtZero: true,
+                                                    ticks: {
+                                                        color: "white" 
+                                                    }
+                                                },
+                                                x: {
+                                                    ticks: {
+                                                        color: "white" 
+                                                    }
                                                 }
                                             },
                                             onClick: (e, elements) => {
@@ -644,6 +662,7 @@
                                         }
                                     });
                                 </script>
+
                             </div>
                         </div>
                     </div>

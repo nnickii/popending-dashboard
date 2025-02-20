@@ -242,10 +242,18 @@ try {
         background-color: #fff;
         color: #000;
     }
+
+    body {
+        background-image: url('../popending/assets/img/mainbg.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
 </style>
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark">
         <a class="navbar-brand ps-3" href="index.php">Haier</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
@@ -270,7 +278,7 @@ try {
     </nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <nav class="sb-sidenav accordion sb-sidenav" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Core</div>
@@ -518,7 +526,7 @@ try {
                                 <i class="fas fa-chart-bar me-1"></i>Po Pending Group
                             </div>
                             <div class="card-body">
-                                <canvas id="chartContainer" width="auto" height="100"></canvas>
+                                <canvas id="chartContainer" width="auto" height="120"></canvas>
                                 <script>
                                     const pogroupMax = JSON.parse('<?php echo $pogroupMax_json; ?>');
                                     const revenuesMax = JSON.parse('<?php echo $revenuesMax_json; ?>');
@@ -558,6 +566,9 @@ try {
                                                 legend: {
                                                     display: true,
                                                     position: 'top',
+                                                    labels: {
+                                                        color: "white"
+                                                    },
                                                     onClick: function(e, legendItem, legend) {
                                                         const label = legendItem.text;
 
@@ -577,7 +588,15 @@ try {
                                             },
                                             scales: {
                                                 y: {
-                                                    beginAtZero: true
+                                                    beginAtZero: true,
+                                                    ticks: {
+                                                        color: "white"
+                                                    }
+                                                },
+                                                x: {
+                                                    ticks: {
+                                                        color: "white"
+                                                    }
                                                 }
                                             },
                                             onClick: function(event, elements) {

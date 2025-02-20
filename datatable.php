@@ -1,10 +1,9 @@
 <?php
 include 'connection.php';
 
-$filterDate = $_GET['filterDate'] ?? ''; // รับพารามิเตอร์วันที่จาก URL
+$filterDate = $_GET['filterDate'] ?? '';
 
 try {
-    // SQL Query
     $sql = "SELECT 
                 id, 
                 po_no,
@@ -54,7 +53,11 @@ try {
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <style>
         body {
-            background-color: rgb(118, 118, 128, 0.2);
+            background-image: url('../popending/assets/img/mainbg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
             font-size: 14px;
         }
@@ -63,18 +66,18 @@ try {
             width: 100%;
             border-collapse: collapse;
             margin: 0px auto;
-            background-color: white;
+            background-color: transparent;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             overflow: hidden;
         }
 
         table.display thead th {
-            background-color: #f8f9fc;
+            background-color:rgba(254, 254, 255, 0.93);
             border-bottom: 2px solid #e3e6f0;
             padding: 7px;
             font-weight: bold;
-            text-align: left;
+            text-align: center;
             color: #343a40;
         }
 
@@ -82,11 +85,11 @@ try {
             padding: 7px;
             border-bottom: 1px solid #e3e6f0;
             text-align: left;
-            color: #495057;
+            color:rgb(255, 255, 255);
         }
 
         table.display tbody tr:hover {
-            background-color: #f1f1f1;
+            background-color:rgba(243, 231, 177, 0.57);
         }
 
         .container-fluid {
@@ -133,10 +136,10 @@ try {
 <body>
     <div class="container-fluid px-4">
         <a class="nav-link" href="index.php" style="text-decoration: none;">
-            <h2 class="text-center my-4" style="color: #495057; text-align:center">Data Table</h2>
+            <h2 class="text-center my-4" style="color:rgb(255, 255, 255); text-align:center">Data Table</h2>
         </a>
         <form method="GET" action="">
-            <div>
+            <div style="color:rgb(255, 255, 255);">
                 <label for="filterDate">Date:</label>
                 <input type="date" id="filterDate" name="filterDate" value="<?php echo htmlspecialchars($filterDate); ?>">
             </div>
@@ -188,7 +191,7 @@ try {
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 new simpleDatatables.DataTable("#dataTable", {
-                    perPage: 12,
+                    perPage: 10,
                     perPageSelect: false,
                     searchable: true,
                 });

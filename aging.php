@@ -82,7 +82,11 @@ try {
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <style>
         body {
-            background-color: rgb(118, 118, 128, 0.2);
+            background-image: url('../popending/assets/img/mainbg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
             font-size: 14px;
         }
@@ -91,18 +95,18 @@ try {
             width: 100%;
             border-collapse: collapse;
             margin: 0px auto;
-            background-color: white;
+            background-color: transparent;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             overflow: hidden;
         }
 
         table.display thead th {
-            background-color: #f8f9fc;
+            background-color: rgba(254, 254, 255, 0.93);
             border-bottom: 2px solid #e3e6f0;
             padding: 7px;
             font-weight: bold;
-            text-align: left;
+            text-align: center;
             color: #343a40;
         }
 
@@ -110,11 +114,11 @@ try {
             padding: 7px;
             border-bottom: 1px solid #e3e6f0;
             text-align: left;
-            color: #495057;
+            color: rgb(255, 255, 255);
         }
 
         table.display tbody tr:hover {
-            background-color: #f1f1f1;
+            background-color: rgba(243, 231, 177, 0.57);
         }
 
         .container-fluid {
@@ -163,26 +167,28 @@ try {
     <div class="container-fluid px-4">
         <a class="nav-link" href="dashboard.php?plant=<?php echo urlencode($plant); ?>&aging=<?php echo urlencode($aging); ?>&filterDate=
     <?php echo urlencode($filterDate); ?>" style="text-decoration: none;">
-            <h2 class="text-center" style="color: #495057; text-align: center;">Aging
+            <h2 class="text-center" style="color:rgb(255, 255, 255); text-align: center;">Aging
                 <?php echo htmlspecialchars($aging); ?> Days for Plant <?php echo htmlspecialchars($plant); ?></h2>
         </a>
         <form method="GET" action="">
-            <label for="filterDate">Date:</label>
-            <input type="hidden" name="plant" value="<?php echo htmlspecialchars($plant); ?>" />
-            <input type="date" id="filterDate" name="filterDate" value="<?php echo htmlspecialchars($filterDate); ?>" />
-            <label for="aging">Aging:</label>
-            <select name="aging" id="aging">
-                <option value="">Select aging</option>
-                <option value="0-15" <?php echo $aging === '0-15' ? 'selected' : ''; ?>>0-15 Days</option>
-                <option value="16-30" <?php echo $aging === '16-30' ? 'selected' : ''; ?>>16-30 Days</option>
-                <option value="31-60" <?php echo $aging === '31-60' ? 'selected' : ''; ?>>31-60 Days</option>
-                <option value="61-90" <?php echo $aging === '61-90' ? 'selected' : ''; ?>>61-90 Days</option>
-                <option value="91-120" <?php echo $aging === '91-120' ? 'selected' : ''; ?>>91-120 Days</option>
-                <option value="121-150" <?php echo $aging === '121-150' ? 'selected' : ''; ?>>121-150 Days</option>
-                <option value="151-180" <?php echo $aging === '151-180' ? 'selected' : ''; ?>>151-180 Days</option>
-                <option value="181-360" <?php echo $aging === '181-360' ? 'selected' : ''; ?>>181-360 Days</option>
-                <option value=">360" <?php echo $aging === '>360' ? 'selected' : ''; ?>>>360 Days</option>
-            </select>
+            <div style="color:rgb(255, 255, 255);">
+                <label for="filterDate">Date:</label>
+                <input type="hidden" name="plant" value="<?php echo htmlspecialchars($plant); ?>" />
+                <input type="date" id="filterDate" name="filterDate" value="<?php echo htmlspecialchars($filterDate); ?>" />
+                <label for="aging">Aging:</label>
+                <select name="aging" id="aging">
+                    <option value="">Select aging</option>
+                    <option value="0-15" <?php echo $aging === '0-15' ? 'selected' : ''; ?>>0-15 Days</option>
+                    <option value="16-30" <?php echo $aging === '16-30' ? 'selected' : ''; ?>>16-30 Days</option>
+                    <option value="31-60" <?php echo $aging === '31-60' ? 'selected' : ''; ?>>31-60 Days</option>
+                    <option value="61-90" <?php echo $aging === '61-90' ? 'selected' : ''; ?>>61-90 Days</option>
+                    <option value="91-120" <?php echo $aging === '91-120' ? 'selected' : ''; ?>>91-120 Days</option>
+                    <option value="121-150" <?php echo $aging === '121-150' ? 'selected' : ''; ?>>121-150 Days</option>
+                    <option value="151-180" <?php echo $aging === '151-180' ? 'selected' : ''; ?>>151-180 Days</option>
+                    <option value="181-360" <?php echo $aging === '181-360' ? 'selected' : ''; ?>>181-360 Days</option>
+                    <option value=">360" <?php echo $aging === '>360' ? 'selected' : ''; ?>>>360 Days</option>
+                </select>
+            </div>
             <button type="submit" style="padding: 5px;">Search</button>
         </form>
         <?php if ($query->rowCount() > 0): ?>
@@ -226,7 +232,7 @@ try {
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const dataTable = new simpleDatatables.DataTable("#agingTable", {
-                perPage: 12,
+                perPage: 10,
                 perPageSelect: false,
                 searchable: true,
             });
