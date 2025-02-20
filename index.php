@@ -103,6 +103,10 @@
     <nav class="sb-topnav navbar navbar-expand navbar-dark">
         <a class="navbar-brand ps-3" href="index.php">Haier</a>
         <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Container for centering the date -->
+            <div class="d-flex justify-content-center w-100">
+                <div class="text-white" id="current-date-time"></div>
+            </div>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
                     <form method="get" action="dashboard.php" class="d-flex">
@@ -139,6 +143,23 @@
                 </li>
             </ul>
     </nav>
+    <script>
+        function updateDateTime() {
+            var currentDate = new Date();
+            var hours = currentDate.getHours().toString().padStart(2, '0');
+            var minutes = currentDate.getMinutes().toString().padStart(2, '0');
+            var seconds = currentDate.getSeconds().toString().padStart(2, '0');
+            var day = currentDate.getDate();
+            var month = currentDate.getMonth() + 1;
+            var year = currentDate.getFullYear();
+            var dateString = year + '-' + month.toString().padStart(2, '0') + '-' + day.toString().padStart(2, '0') +
+                ' ' + hours + ':' + minutes + ':' + seconds;
+            document.getElementById('current-date-time').innerText = dateString;
+        }
+
+        // Update date and time every second
+        setInterval(updateDateTime, 1000);
+    </script>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav" id="sidenavAccordion">
@@ -533,7 +554,7 @@
                             </div>
                         </div>
                         <div class="mb-4" style="margin-right: 10px;">
-                            <div class=" py-3">
+                            <div class="py-3">
                                 <i class="fas fa-chart-bar me-1"></i>Po Pending Group
                             </div>
                             <div class="card-body">
@@ -620,7 +641,7 @@
                                                     display: true,
                                                     position: 'top',
                                                     labels: {
-                                                        color: "white" 
+                                                        color: "white"
                                                     },
                                                     onClick: function(e, legendItem, legend) {
                                                         const label = legendItem.text;
@@ -643,12 +664,12 @@
                                                 y: {
                                                     beginAtZero: true,
                                                     ticks: {
-                                                        color: "white" 
+                                                        color: "white"
                                                     }
                                                 },
                                                 x: {
                                                     ticks: {
-                                                        color: "white" 
+                                                        color: "white"
                                                     }
                                                 }
                                             },

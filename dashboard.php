@@ -162,7 +162,7 @@ try {
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Dashboard</title>
+    <title>Plant Dashboard</title>
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
@@ -522,7 +522,7 @@ try {
                             </div>
                         </div>
                         <div class="mb-4" style="margin-right: 10px;">
-                            <div class="card-header py-3">
+                            <div class="py-3">
                                 <i class="fas fa-chart-bar me-1"></i>Po Pending Group
                             </div>
                             <div class="card-body">
@@ -532,7 +532,6 @@ try {
                                     const revenuesMax = JSON.parse('<?php echo $revenuesMax_json; ?>');
                                     const pogroupMin = JSON.parse('<?php echo $pogroupMin_json; ?>');
                                     const revenuesMin = JSON.parse('<?php echo $revenuesMin_json; ?>');
-
 
                                     const barColorsMax = pogroupMax.map((_, index) => `hsl(${index * 360 / pogroupMax.length}, 70%, 60%)`);
                                     const barColorsMin = pogroupMin.map((_, index) => `hsl(${index * 360 / pogroupMin.length}, 70%, 60%)`);
@@ -566,9 +565,6 @@ try {
                                                 legend: {
                                                     display: true,
                                                     position: 'top',
-                                                    labels: {
-                                                        color: "white"
-                                                    },
                                                     onClick: function(e, legendItem, legend) {
                                                         const label = legendItem.text;
 
@@ -588,31 +584,24 @@ try {
                                             },
                                             scales: {
                                                 y: {
-                                                    beginAtZero: true,
-                                                    ticks: {
-                                                        color: "white"
-                                                    }
-                                                },
-                                                x: {
-                                                    ticks: {
-                                                        color: "white"
-                                                    }
+                                                    beginAtZero: true
                                                 }
                                             },
                                             onClick: function(event, elements) {
                                                 if (elements.length > 0) {
                                                     const index = elements[0].index;
-                                                    const selectedGroup = chartData.labels[index];
-                                                    const plant = "<?php echo htmlspecialchars($selectedPlant); ?>";
-
+                                                    const selectedGroup = chart.data.labels[index]; // PO Group ที่ถูกเลือกจากกราฟ
+                                                    const plant = "<?php echo htmlspecialchars($selectedPlant); ?>"; // ค่า Plant
                                                     window.location.href = `po_group_plant.php?po_group=${encodeURIComponent(selectedGroup)}&plant=${encodeURIComponent(plant)}`;
                                                 }
                                             }
+
                                         }
                                     });
                                 </script>
                             </div>
                         </div>
+
                     </div>
                 </div>
         </div>

@@ -83,7 +83,7 @@ try {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Data Table Dashboard" />
-    <title>Dashboard</title>
+    <title>Status Table</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <style>
         body {
@@ -142,58 +142,101 @@ try {
         form {
             display: flex;
             justify-content: flex-start;
-            gap: 0px;
+            gap: 10px;
             align-items: center;
-            margin-bottom: 0px;
+            margin-bottom: 0;
+            flex-wrap: wrap;
         }
 
         #filterDate,
-        #status,
-        #searchInput {
+        #searchInput,
+        #status {
             padding: 5px;
             font-size: 14px;
             margin-right: 5px;
         }
 
         .datatable-top {
-            padding: 0px;
+            padding: 0;
             display: flex;
             align-items: center;
             justify-content: flex-start;
             width: 100%;
-            gap: 0px;
-            margin-bottom: 8px;
-            margin-top: 8px;
+            gap: 0;
+            margin: 8px 0;
+        }
+
+        .datatable-top button {
+            padding: 5px 15px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .datatable-top button:hover {
+            background-color: #0056b3;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        @media (max-width: 768px) {
+            form {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #filterDate,
+            #searchInput
+            #status {
+                width: 100%;
+            }
+
+            .datatable-top {
+                flex-direction: row;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .datatable-top {
+                padding: 8px;
+                width: 100%;
+            }
+            #status,
+            #searchInput {
+                width: 100%;
+                font-size: 16px;
+            }
         }
     </style>
 </head>
 
 <body>
     <div class="container-fluid px-4">
-        <a class="nav-link" href="dashboard.php?plant=<?php echo urlencode($plant); ?>&status=<?php echo urlencode($status); ?>&filterDate=
-    <?php echo urlencode($filterDate); ?>" style="text-decoration: none;">
+        <a class="nav-link" href="dashboard.php?plant=<?php echo urlencode($plant); ?>&status=<?php echo urlencode($status); ?>&filterDate=<?php echo urlencode($filterDate); ?>" style="text-decoration: none;">
             <h2 class="text-center" style="color:rgb(255, 255, 255); text-align: center;">
                 <?php echo htmlspecialchars($status); ?> for Plant <?php echo htmlspecialchars($plant); ?></h2>
         </a>
         <form method="GET" action="">
-            <div style="color: white;">
+            <div style="color: white; display: flex; gap: 10px; align-items: center;">
                 <input type="hidden" name="plant" value="<?php echo htmlspecialchars($plant); ?>" />
                 <label for="filterDate">Date:</label>
                 <input type="date" id="filterDate" name="filterDate" value="<?php echo htmlspecialchars($filterDate); ?>">
-                <div>
-                    <label for="status">Status:</label>
-                    <select name="status" id="status">
-                        <option value="">Select status</option>
-                        <?php foreach ($Status as $group): ?>
-                            <option value="<?php echo htmlspecialchars($group['status']); ?>"
-                                <?php echo $status === $group['status'] ? 'selected' : ''; ?>>
-                                <?php echo htmlspecialchars($group['status']); ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
+                <label for="status">Status:</label>
+                <select name="status" id="status">
+                    <option value="">Select status</option>
+                    <?php foreach ($Status as $group): ?>
+                        <option value="<?php echo htmlspecialchars($group['status']); ?>"
+                            <?php echo $status === $group['status'] ? 'selected' : ''; ?>>
+                            <?php echo htmlspecialchars($group['status']); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                <button type="submit" style="padding: 5px;">Search</button>
             </div>
-            <button type="submit" style="padding: 5px;">Search</button>
         </form>
 
         <?php if (!empty($results)): ?>

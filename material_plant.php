@@ -48,7 +48,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Material Dashboard</title>
+    <title>Materials Table</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet">
     <style>
         body {
@@ -107,15 +107,15 @@ try {
         form {
             display: flex;
             justify-content: flex-start;
-            gap: 0;
+            gap: 10px;
             align-items: center;
             margin-bottom: 0;
             flex-wrap: wrap;
         }
 
         #filterDate,
-        #mat_desc,
-        #searchInput {
+        #searchInput,
+        #mat_desc {
             padding: 5px;
             font-size: 14px;
             margin-right: 5px;
@@ -156,7 +156,8 @@ try {
 
             #filterDate,
             #mat_desc,
-            #searchInput {
+            #searchInput,
+            #status {
                 width: 100%;
             }
 
@@ -171,8 +172,7 @@ try {
                 width: 100%;
             }
 
-            #filterDate,
-            #mat_desc,
+            #status,
             #searchInput {
                 width: 100%;
                 font-size: 16px;

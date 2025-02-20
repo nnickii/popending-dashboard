@@ -59,7 +59,7 @@ try {
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Po Group Plant</title>
+    <title>Po Group Plant Table</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <style>
         body {
@@ -146,7 +146,7 @@ try {
 
 <body>
     <div class="container-fluid px-4">
-        <a class="nav-link" href="dashboard.php?plant=<?php echo urlencode($plant); ?>&status=<?php echo urlencode($po_group); ?>&filterDate=
+        <a class="nav-link" href="dashboard.php?plant=<?php echo urlencode($plant); ?>&po_group=<?php echo urlencode($po_group); ?>&filterDate=
     <?php echo urlencode($filterDate); ?>" style="text-decoration: none;">
             <h2 class="text-center" style="color:rgb(255, 255, 255); text-align: center;">
                 <?php echo htmlspecialchars($po_group); ?> for Plant <?php echo htmlspecialchars($plant); ?></h2>
